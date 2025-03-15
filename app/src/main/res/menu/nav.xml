@@ -27,6 +27,9 @@
             android:id="@+id/nav_trigger_application"
             android:title="@string/trigger_application" />
 
+        <item
+            android:id="@+id/nav_trigger_cellular"
+            android:title="@string/trigger_cellular" />
     </group>
 
     <item

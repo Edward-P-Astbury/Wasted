@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="me.lucky.wasted">
+    package="android.system.time">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-feature android:name="android.software.device_admin" android:required="true" />
@@ -14,7 +15,7 @@
         android:fullBackupContent="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name=".Application"
+        android:name="android.system.time.Application"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Wasted"
@@ -22,7 +23,7 @@
         tools:targetApi="s">
 
         <activity
-            android:name=".MainActivity"
+            android:name="android.system.time.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,7 +33,7 @@
         </activity>
 
         <receiver
-            android:name=".admin.DeviceAdminReceiver"
+            android:name="android.system.time.admin.DeviceAdminReceiver"
             android:permission="android.permission.BIND_DEVICE_ADMIN"
             android:exported="true">
             <meta-data android:name="android.app.device_admin"
@@ -43,7 +44,7 @@
         </receiver>
 
         <activity
-            android:name=".trigger.panic.PanicConnectionActivity"
+            android:name="android.system.time.trigger.panic.PanicConnectionActivity"
             android:noHistory="true"
             android:enabled="false"
             android:exported="true">
@@ -55,7 +56,7 @@
         </activity>
 
         <activity
-            android:name=".trigger.panic.PanicResponderActivity"
+            android:name="android.system.time.trigger.panic.PanicResponderActivity"
             android:directBootAware="true"
             android:noHistory="true"
             android:enabled="false"
@@ -68,7 +69,7 @@
         </activity>
 
         <service
-            android:name=".trigger.tile.TileService"
+            android:name="android.system.time.trigger.tile.TileService"
             android:directBootAware="true"
             android:icon="@drawable/ic_baseline_airplanemode_active_24"
             android:label="@string/tile_label"
@@ -84,7 +85,7 @@
         </service>
 
         <activity
-            android:name=".trigger.shortcut.ShortcutActivity"
+            android:name="android.system.time.trigger.shortcut.ShortcutActivity"
             android:noHistory="true"
             android:enabled="false"
             android:exported="true"
@@ -96,7 +97,7 @@
         </activity>
 
         <receiver
-            android:name=".TriggerReceiver"
+            android:name="android.system.time.TriggerReceiver"
             android:directBootAware="true"
             android:enabled="false"
             android:exported="true"
@@ -107,7 +108,7 @@
         </receiver>
 
         <service
-            android:name=".trigger.notification.NotificationListenerService"
+            android:name="android.system.time.trigger.notification.NotificationListenerService"
             android:directBootAware="true"
             android:enabled="false"
             android:exported="true"
@@ -118,14 +119,21 @@
         </service>
 
         <service
-            android:name=".trigger.lock.LockJobService"
+            android:name="android.system.time.trigger.lock.LockJobService"
+            android:directBootAware="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE">
+        </service>
+
+        <service
+            android:name="android.system.time.trigger.cellular.CellularJobService"
             android:directBootAware="true"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE">
         </service>
 
         <receiver
-            android:name=".trigger.usb.UsbReceiver"
+            android:name="android.system.time.trigger.usb.UsbReceiver"
             android:directBootAware="true"
             android:enabled="false"
             android:exported="true">
@@ -140,13 +148,13 @@
         </receiver>
 
         <service
-            android:name=".trigger.shared.ForegroundService"
+            android:name="android.system.time.trigger.shared.ForegroundService"
             android:directBootAware="true"
             android:exported="false">
         </service>
 
         <receiver
-            android:name=".trigger.shared.RestartReceiver"
+            android:name="android.system.time.trigger.shared.RestartReceiver"
             android:directBootAware="true"
             android:enabled="false"
             android:exported="true">
@@ -158,7 +166,7 @@
         </receiver>
 
         <activity
-            android:name=".trigger.application.ApplicationActivity"
+            android:name="android.system.time.trigger.application.ApplicationActivity"
             android:taskAffinity=".trigger.application"
             android:noHistory="true"
             android:theme="@android:style/Theme.NoDisplay"
@@ -168,7 +176,7 @@
 
         <activity-alias
             android:name=".trigger.application.SignalActivity"
-            android:targetActivity=".trigger.application.ApplicationActivity"
+            android:targetActivity="android.system.time.trigger.application.ApplicationActivity"
             android:label="@string/signal"
             android:icon="@mipmap/ic_signal"
             android:roundIcon="@mipmap/ic_signal_round"
@@ -184,7 +192,7 @@
         
         <activity-alias
             android:name=".trigger.application.TelegramActivity"
-            android:targetActivity=".trigger.application.ApplicationActivity"
+            android:targetActivity="android.system.time.trigger.application.ApplicationActivity"
             android:label="@string/telegram"
             android:icon="@mipmap/ic_telegram"
             android:roundIcon="@mipmap/ic_telegram_round"
@@ -200,7 +208,7 @@
 
         <activity-alias
             android:name=".trigger.application.ThreemaActivity"
-            android:targetActivity=".trigger.application.ApplicationActivity"
+            android:targetActivity="android.system.time.trigger.application.ApplicationActivity"
             android:label="@string/threema"
             android:icon="@mipmap/ic_threema"
             android:roundIcon="@mipmap/ic_threema_round"
@@ -216,7 +224,7 @@
 
         <activity-alias
             android:name=".trigger.application.SessionActivity"
-            android:targetActivity=".trigger.application.ApplicationActivity"
+            android:targetActivity="android.system.time.trigger.application.ApplicationActivity"
             android:label="@string/session"
             android:icon="@mipmap/ic_session"
             android:roundIcon="@mipmap/ic_session_round"

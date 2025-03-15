@@ -7,7 +7,7 @@ android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "me.lucky.wasted"
+        applicationId "android.system.time"
         minSdk 23
         targetSdk 32
         versionCode 39
